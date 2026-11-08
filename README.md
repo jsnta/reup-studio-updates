@@ -1,13 +1,18 @@
 # Reup Studio updates
 
-Kênh cập nhật chính thức của Reup Studio.
+Phiên bản ổn định: **3.5.0**.
 
-- Phiên bản ổn định: **3.4.1**.
-- Sửa lỗi `No module named updater` khi chạy bằng Python nhúng chế độ cô lập. Máy bị lỗi 3.4.0 cần chạy lại bản kích hoạt nhỏ 3.4.1 một lần.
-- `stable.json`: gói mã chương trình nén có chữ ký RSA SHA-256, không cần đăng nhập GitHub để tải.
-- Tool kiểm tra và áp dụng bản mới khi mở, trước khi khởi động hàng đợi. Không dừng lượt đăng đang chạy.
-- Mất mạng hoặc chữ ký sai: dùng tiếp bản hiện tại. Kiểm tra khởi động thất bại: khôi phục tệp chương trình cũ.
+## Thay đổi
 
-Gói không chứa tài khoản Facebook, cookie, hàng đợi hoặc khóa ký riêng. Bộ runtime lớn được giữ nguyên. Thay đổi thư viện/runtime cần bản vá riêng; tiện ích Chrome unpacked có thể cần Reload khi mã tiện ích đổi.
+- Chrome hiện tại dùng đăng nhập Facebook; nút **Kết nối Facebook và chạy ẩn** chuyển riêng phiên Facebook sang trình duyệt ẩn cục bộ, rồi kiểm tra đăng nhập. Sau khi kết nối thành công có thể đóng tab nguồn. Không đọc hồ sơ Chrome hoặc cookie trang khác. Facebook có thể yêu cầu xác minh lại; tool dừng, không vượt xác minh.
+- Xử lý lời mời thêm nút tùy chọn đã nhận diện bằng Anh/Việt, ưu tiên nút khả dụng, nhớ thông báo thành công để chờ liên kết bài mới. Không tự gửi lại nếu kết quả chưa rõ.
+- Quét danh sách Page theo lô, bỏ giới hạn 100 và bỏ bước mở lần lượt từng Trang. Tra địa chỉ dạng tên theo nhóm, lưu ID; giữ lựa chọn cũ khi quét chưa đầy đủ. Tốc độ thực tế còn phụ thuộc Facebook.
+- Mặc định xóa video tải về khi mọi lượt dùng video đó đã thành công hoặc bị hủy; giữ file khi còn chờ, lỗi hoặc chưa xác minh. Có thể tắt trong giao diện. Không xóa hàng đợi, thiết lập hoặc phiên đăng nhập.
 
-Đã kiểm thử nâng cấp, chữ ký, khôi phục, khởi động và lỗi Python cô lập trên tệp trích từ EXE. Chưa chạy EXE trực tiếp trên Windows tại môi trường build.
+## Tự cập nhật
+
+`stable.json` chứa gói chương trình nén, ký RSA SHA-256. Các máy đã có bộ cập nhật 3.4.1 nhận bản mới khi đóng hẳn tool và mở lại. Máy chưa chạy được bộ cập nhật cần bản vá kích hoạt nhỏ. Không cần GitHub trên máy người dùng. Bộ runtime lớn được giữ nguyên; nâng runtime cần bản vá riêng. Tiện ích Chrome unpacked có thể cần Reload khi mã tiện ích đổi.
+
+Gói công khai không chứa tài khoản, cookie, dữ liệu hàng đợi hay khóa ký riêng.
+
+Đã thử các tình huống đăng trên Chromium với giao diện mô phỏng, danh sách 1.200 Page, chuyển phiên được giả lập, dọn file và nâng cấp từ bộ cập nhật 3.4.1. Chưa xác minh toàn bộ luồng với Facebook thật hoặc EXE chạy trực tiếp trên Windows.
